@@ -8,7 +8,7 @@
                 "--data PATH" 
                 "path to file containing data"
                 :parse-fn io/file
-                :validate [#(.isFile %) "-d/--data must be a valid path to a file in the filesystem"]])
+                :validate [#(.isFile %) "-d/--data must be a valid path to a file in the filesystem"]]])
 
 
 (defn usage
@@ -25,5 +25,11 @@
         (println e))
       (usage "See usage instruction below" summary)
       (System/exit -1))
-    (let [{:keys [algorithm
+    (let [{:keys [data help]} options
+          [algrithm & _] arguments]
+      (when help
+        (usage "Machine Learning Framework: Usage instructions" summary)
+        (System/exit -1))
+      (println algrithm)
+      (println data))))
 
