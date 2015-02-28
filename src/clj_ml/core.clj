@@ -13,13 +13,13 @@
                 :validate (validators/file-validator "-d/--data")]
                ["-p" 
                 "--params PATH" 
-                "path to fle containing the final model params result"
+                "filepath were params will be saved"
                 :parse-fn io/file]
-               ["-l" 
-                "--learning-rate RATE"
-                "learning rate of the SGD algorithm (often written eta)"
+               ["-e"
+                "--eta ETA"
+                "learning rate for SGD"
                 :parse-fn #(Double/parseDouble %)
-                :validate (validators/>0-validator "-l/--learning-rate")]])
+                :validate [#() ""]]
 
 (def algorithms #{"logistic-regression" "linear-regression" "artificial-neural-network"})
 
